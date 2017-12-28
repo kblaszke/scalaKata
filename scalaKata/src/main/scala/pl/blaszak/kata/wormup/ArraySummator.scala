@@ -1,4 +1,4 @@
-package pl.blaszak.kata
+package pl.blaszak.kata.wormup
 
 /*Given an array of  integers, can you find the sum of its elements?
 

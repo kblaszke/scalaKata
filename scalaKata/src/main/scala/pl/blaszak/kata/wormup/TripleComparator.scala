@@ -1,4 +1,4 @@
-package pl.blaszak.kata
+package pl.blaszak.kata.wormup
 
 /*
 Alice and Bob each created one problem for HackerRank. A reviewer rates the two challenges, awarding points on a scale

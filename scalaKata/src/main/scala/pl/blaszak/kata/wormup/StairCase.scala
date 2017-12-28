@@ -1,4 +1,4 @@
-package pl.blaszak.kata
+package pl.blaszak.kata.wormup
 
 /*
 Consider a staircase of size n=4:

@@ -1,6 +1,4 @@
-package pl.blaszak.kata
-
-import java.util
+package pl.blaszak.kata.wormup
 
 /*
 Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the

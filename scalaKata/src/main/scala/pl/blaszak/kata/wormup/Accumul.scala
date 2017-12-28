@@ -1,4 +1,4 @@
-package pl.blaszak.kata
+package pl.blaszak.kata.wormup
 
 /*This time no story, no theory. The examples below show you how to write function accum:
 
