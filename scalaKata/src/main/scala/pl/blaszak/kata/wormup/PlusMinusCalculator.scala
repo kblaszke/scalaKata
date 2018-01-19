@@ -33,12 +33,12 @@ The respective fractions of positive numbers, negative numbers and zeroes are 3/
  */
 object PlusMinusCalculator {
 
-  def calculate(arr: Array[Int]): Array[Double] = {
+  def calculate(arr: Array[Int]): (Double, Double, Double) = {
     var positiveNumbers = 0D
     var negativeNumbers = 0D
     var zeroNumbers = 0D
     arr.foreach(f => if(f<0){negativeNumbers += 1}else if(f>0){positiveNumbers += 1}else{zeroNumbers += 1})
-    Array(positiveNumbers/arr.length, negativeNumbers/arr.length, zeroNumbers/arr.length)
+    new Tuple3(negativeNumbers/arr.length, zeroNumbers/arr.length, positiveNumbers/arr.length)
   }
 
 }
