@@ -1,4 +1,4 @@
-package pl.blaszak.practise.cocurency
+package pl.blaszak.practise.concurency
 
 class SyncVar[A] {
 
