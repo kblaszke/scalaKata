@@ -4,6 +4,7 @@ object optionExample {
 
   def sayHello(username: Option[String]): Unit = {
     for(name <- username) {
+      //noinspection ScalaStyle
       println("Hello " + name + "!")
     }
   }
@@ -27,14 +28,15 @@ object optionExample {
 
   def canAuthenticate(userName: String, password: String): Boolean = if ("Admin".equals(userName) && "Admin1".equals(password)) true else false
 
-  def privilegesFor(name: String) = new Privileges(name)
+  def privilegesFor(name: String): Privileges = new Privileges(name)
 
   def injectPrivilegesIntoSession(privileges: Privileges): Unit = {
+    //noinspection ScalaStyle
     println("fake method for inject privileges into session for: " + privileges.getUserName() + ", at level: " + privileges.level)
   }
 
   class Privileges(userName: String) {
-    def level = "developer"
+    def level: String = "developer"
     def getUserName(): String = userName
   }
 }
