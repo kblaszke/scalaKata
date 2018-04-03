@@ -29,7 +29,7 @@ Constraints
 
 Output Format
 
-Print two space-seperated integers describing the respective numbers of times her best (highest) score increased and her
+Print two space-separated integers describing the respective numbers of times her best (highest) score increased and her
 worst (lowest) score decreased.
 
 Sample Input 0
@@ -60,29 +60,29 @@ season was lower than the one she earned during her first game), so we print 4 0
 
 import java.io.PrintWriter
 
-import scala.annotation.switch
+import scala.annotation.tailrec
 
 object breakingRecords {
 
-  @switch
-  def breakingRecords(scores: List[Int], minMax: Option[(Int, Int)] = Option.empty, count: (Int, Int) = (0, 0)): Option[(Int, Int)] = scores match {
-    case List() => None
-    case head :: Nil =>
-      minMax.map(mm => {
-        val minValues = solveValues((x, y) => x < y)(head, mm._1, count._1)
-        val maxValues = solveValues((x, y) => x > y)(head, mm._2, count._2)
-        Some((minValues._2, maxValues._2))
-      }).getOrElse(Some((0, 0)))
-    case head :: tail =>
-      minMax.map(mm => {
-        val minValues = solveValues((x, y) => x < y)(head, mm._1, count._1)
-        val maxValues = solveValues((x, y) => x > y)(head, mm._2, count._2)
-        breakingRecords(tail, Some((minValues._1, maxValues._1)), (minValues._2, maxValues._2))
-      }).getOrElse(breakingRecords(tail, Some((head, head)), count))
+  def breakingRecords(scores: List[Int]): Option[(Int, Int)] = {
+
+    @tailrec
+    def go(scores: List[Int], min: Int, max: Int, countMin: Int, countMax: Int): Option[(Int, Int)] = scores match {
+      case Nil => Some((countMin, countMax))
+      case head :: tail =>
+        val minValues = solveValues((x, y) => x < y)(head, min, countMin)
+        val maxValues = solveValues((x, y) => x > y)(head, max, countMax)
+        go(tail, minValues._1, maxValues._1, minValues._2, maxValues._2)
+    }
+
+    scores match {
+      case Nil => None
+      case head :: tail => go(tail, head, head, 0, 0)
+    }
   }
 
-  def solveValues(f: (Int, Int) => Boolean)(value: Int, min: Int, minCount: Int): (Int, Int) = {
-    if (f.apply(value, min)) (value, minCount + 1) else (min, minCount)
+  private def solveValues(f: (Int, Int) => Boolean)(value: Int, extreme: Int, count: Int): (Int, Int) = {
+    if (f(value, extreme)) (value, count + 1) else (extreme, count)
   }
 
   def main(args: Array[String]) {
