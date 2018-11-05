@@ -1,6 +1,6 @@
 package pl.blaszak.kata.implementation
 
-object GradingStudents {
+object gradingStudents {
 
   private def grade(g: Int): Int = {
     var result = g
